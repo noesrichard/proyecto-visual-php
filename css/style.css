@@ -1,0 +1,33 @@
+*{ 
+    font-family: sans-serif;
+}
+
+
+nav{ 
+    position: relative; 
+    margin: auto;
+    width: 100%;
+    height: auto;
+    background-color: black;
+}
+
+nav ul{ 
+    position: relative; 
+    margin: auto; 
+    width: 50%;
+    text-align: center;
+}
+
+nav ul li{ 
+    display: inline-block;
+    width: 24%;
+    margin: auto;
+    line-height: 50px;
+    list-style: none;
+}
+
+nav ul li a{ 
+    font-size: large;
+    color: white; 
+    text-decoration: none;
+}
