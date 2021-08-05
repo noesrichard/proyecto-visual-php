@@ -10,12 +10,17 @@
 <body>
 
     <header>
-        <img src="images/header.jpg" width="100%" alt="cabecera">
+        <img src="images/header-clase.jpg" width="100%" alt="cabecera">
     </header>
     <?php
         include "modules/nav.php";
     ?>
-    
+    <section>
+    <?php
+        $controlador = new Controller(); 
+        $controlador->redireccion();
+    ?>
+    </section>
     
 </body>
 </html>

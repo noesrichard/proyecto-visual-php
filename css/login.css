@@ -1,0 +1,11 @@
+body{ 
+    background-image: url('/proyecto/images/clase.jpg');
+    background-size: cover;
+}
+.flex-centrado{ 
+    display: flex;
+    height: max-content;
+    align-items: center;
+    justify-content: center;
+}
+

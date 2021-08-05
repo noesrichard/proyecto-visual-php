@@ -1,3 +1,1 @@
-<?php
-echo "Estas en inicio"; 
-?>
+<h1>INICIO</h1>

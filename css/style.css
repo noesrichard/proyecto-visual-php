@@ -20,10 +20,14 @@ nav ul{
 
 nav ul li{ 
     display: inline-block;
-    width: 24%;
-    margin: auto;
+    width: auto;
+    margin-inline: 30px;
     line-height: 50px;
     list-style: none;
+}
+
+nav ul li:hover{ 
+background-color: gray;
 }
 
 nav ul li a{ 

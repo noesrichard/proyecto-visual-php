@@ -16,5 +16,6 @@ class Controller
         { 
             $direccion = "inicio.php";
         }
+        include Vistas::vista($direccion);
     }
 }
