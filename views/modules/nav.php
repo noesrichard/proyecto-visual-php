@@ -11,8 +11,8 @@
             }elseif($rol == ADMIN){ 
                 echo "<li><a href='index.php?action=profesores'>Profesores</a></li>";
                 echo "<li><a href='index.php?action=notas'>Materias</a></li>";
-                echo "<li><a href='index.php?action=notas'>Alumnos</a></li>";
-                echo "<li><a href='index.php?action=notas'>Representantes</a></li>";
+                echo "<li><a href='index.php?action=alumnos'>Alumnos</a></li>";
+                echo "<li><a href='index.php?action=representantes'>Representantes</a></li>";
             }else{ 
                 echo "<li><a href='index.php?action=notas'>Ver Notas</a></li>";
             }

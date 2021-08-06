@@ -14,7 +14,7 @@ class RepoUsuario
 
     }
 
-    public function existeUsername($username){ 
+    public function existe($username){ 
         $sql = "SELECT EXISTS(SELECT username FROM usuario WHERE username='".$username."') as existe;";
         $resultado = $this->conexion->query($sql);
         $data = $resultado->fetch_assoc(); 

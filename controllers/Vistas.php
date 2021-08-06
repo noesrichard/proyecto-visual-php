@@ -8,9 +8,8 @@ class Vistas
             $direccion == "perfil")
         { 
             $modulo = "views/modules/".$direccion.".php";
-        }elseif($direccion == "profesores")
+        }elseif($direccion == "profesores" || $direccion == "representantes" || $direccion == "alumnos")
         { 
-
             $modulo = "views/modules/admin/".$direccion.".php";
         }
 

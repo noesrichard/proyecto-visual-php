@@ -10,7 +10,7 @@ class RepoProfesor
 
     }
 
-    public function existeProfesor($cedula){ 
+    public function existe($cedula){ 
         $sql = "SELECT EXISTS(SELECT ced_pro FROM profesor WHERE ced_pro='".$cedula."') as existe;";
         $resultado = $this->conexion->query($sql);
         $data = $resultado->fetch_assoc(); 
