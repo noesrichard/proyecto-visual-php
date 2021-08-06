@@ -35,7 +35,7 @@ session_start();
 
 </html>
 <?php
-include "models/RepoUsuario.php";
+require_once "repo/RepoUsuario.php";
 if (isset($_POST["username"]) && isset($_POST["password"])) {
     $username = $_POST["username"];
     $password = $_POST["password"];

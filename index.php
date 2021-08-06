@@ -1,6 +1,6 @@
 <?php
     session_start(); 
-    require_once "controllers/controller.php";
+    require_once "controllers/Controller.php";
     require_once "controllers/Vistas.php"; 
     if (isset($_SESSION["username"]))
     { 

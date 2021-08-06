@@ -3,7 +3,7 @@
     <ul>
         <li><a href="index.php?action=inicio">Inicio</a></li>
         <?php
-            include_once "models/RepoUsuario.php"; 
+            require_once "repo/RepoUsuario.php"; 
             $rol = $_SESSION["rol"];
             if($rol == PROFESOR)
             { 
