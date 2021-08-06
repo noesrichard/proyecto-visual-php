@@ -8,7 +8,12 @@ class Vistas
             $direccion == "perfil")
         { 
             $modulo = "views/modules/".$direccion.".php";
+        }elseif($direccion == "profesores")
+        { 
+
+            $modulo = "views/modules/admin/".$direccion.".php";
         }
+
         return $modulo; 
     }
 }

@@ -9,10 +9,10 @@
             { 
                 echo "<li><a href='index.php?action=notas'>Editar Notas</a></li>";
             }elseif($rol == ADMIN){ 
-                echo "<li><a href='index.php?action=notas'>Crear Profesor</a></li>";
-                echo "<li><a href='index.php?action=notas'>Crear Materia</a></li>";
-                echo "<li><a href='index.php?action=notas'>Crear Alumno</a></li>";
-                echo "<li><a href='index.php?action=notas'>Crear Representante</a></li>";
+                echo "<li><a href='index.php?action=profesores'>Profesores</a></li>";
+                echo "<li><a href='index.php?action=notas'>Materias</a></li>";
+                echo "<li><a href='index.php?action=notas'>Alumnos</a></li>";
+                echo "<li><a href='index.php?action=notas'>Representantes</a></li>";
             }else{ 
                 echo "<li><a href='index.php?action=notas'>Ver Notas</a></li>";
             }
