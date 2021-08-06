@@ -35,19 +35,17 @@ session_start();
 
 </html>
 <?php
+include "models/RepoUsuario.php";
 if (isset($_POST["username"]) && isset($_POST["password"])) {
     $username = $_POST["username"];
     $password = $_POST["password"];
-
-    if ($username == "123" && $password == "123") {
-        $_SESSION["username"] = $username;
-        $_SESSION["rol"] = "profesor";
-        header("Location: /proyecto");
-    }
-    if ($username == "1234" && $password == "1234") {
-        $_SESSION["username"] = $username;
-        $_SESSION["rol"] = "alumno";
-        header("Location: /proyecto");
+    $repo = new RepoUsuario(); 
+    $user = $repo->buscar($username, $password);
+    if($user != null)
+    { 
+       $_SESSION["username"] = $user->getUsername();  
+       $_SESSION["rol"] = $user->getRol();
+       header("Location: /proyecto/"); 
     }
 }
 ?>

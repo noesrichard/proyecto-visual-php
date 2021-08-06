@@ -1,0 +1,61 @@
+
+create table rol(
+    id_rol int primary key, 
+    nom_rol varchar(20) not null, 
+    des_rol tinytext
+);
+
+create table usuario( 
+    username varchar(20) not null primary key, 
+    password varchar(20) not null, 
+    id_rol_usu int not null, 
+    foreign key (id_rol_usu) references rol(id_rol)
+);
+
+create table representante( 
+    ced_rep varchar(10) primary key, 
+    username_rep varchar(20) not null, 
+    nom_rep varchar(20) not null, 
+    ape_rep varchar(20) not null, 
+    tel_rep varchar(10), 
+    dir_rep tinytext, 
+    foreign key (username_rep) references usuario(username)
+);
+
+create table profesor(
+    ced_pro varchar(10) primary key, 
+    username_pro varchar(20) not null, 
+    nom_pro varchar(20) not null, 
+    ape_pro varchar(20) not null, 
+    tel_pro varchar(10), 
+    dir_pro tinytext, 
+    foreign key (username_pro) references usuario(username)
+);
+
+create table alumno( 
+    ced_alu varchar(10) primary key, 
+    username_alu varchar(20) not null, 
+    nom_alu varchar(20) not null, 
+    ape_alu varchar(20) not null, 
+    tel_alu varchar(10), 
+    dir_alu tinytext, 
+    ced_rep_alu varchar(10) not null, 
+    foreign key (ced_rep_alu) references representante(ced_rep),
+    foreign key (username_alu) references usuario(username)
+);
+
+create table materia(
+    id_mat varchar(10) primary key, 
+    nom_mat varchar(20) not null, 
+    des_mat tinytext, 
+    ced_pro_mat varchar(10), 
+    foreign key (ced_pro_mat) references profesor(ced_pro)
+);
+
+create table notas( 
+    id_mat_not varchar(10) not null, 
+    uno_not double, 
+    dos_not double, 
+    ced_alu_not varchar(10) not null, 
+    foreign key (ced_alu_not) references alumno(ced_alu) 
+);
