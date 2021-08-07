@@ -73,9 +73,9 @@ class AdminController
         return false;
     }
 
-    public function crearAlumno($username, $password, $rol, $cedula, $nombre, $apellido, $telefono, $direccion, $cedula_repre)
+    public function crearAlumno($cedula, $password, $rol, $nombre, $apellido, $telefono, $direccion, $cedula_repre)
     {
-        if ($this->repoUsuario->existe($username)) {
+        if ($this->repoUsuario->existe($cedula)) {
             echo "Ya existe un usuario con ese nombre";
             return false;
         } elseif ($this->repoAlumno->existe($cedula)) {
@@ -83,9 +83,21 @@ class AdminController
             return false;
         }
         $repre = $this->repoRepresentante->buscar($cedula_repre); 
-        $alumno = new Alumno($username, $password, $rol, $cedula, $nombre, $apellido, $telefono, $direccion, $repre);
+        $alumno = new Alumno($cedula, $password, $rol,$nombre, $apellido, $telefono, $direccion, $repre);
         if ($this->repoUsuario->crear($alumno)) {
             if ($this->repoAlumno->crear($alumno)) {
+                return $alumno;
+            }
+        }
+        return false;
+    }
+
+    public function actualizarAlumno($cedula, $password, $rol, $nombre, $apellido, $telefono, $direccion, $cedula_repre)
+    { 
+        if($this->repoAlumno->existe($cedula)){ 
+            $repre = $this->repoRepresentante->buscar($cedula_repre);
+            $alumno = new Alumno($cedula, $password, $rol, $nombre, $apellido, $telefono, $direccion, $repre);
+            if($this->repoAlumno->actualizar($alumno)){ 
                 return $alumno;
             }
         }

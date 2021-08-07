@@ -4,10 +4,9 @@ class Alumno extends Usuario
 { 
     private $cedula, $nombre, $apellido, $telefono, $direccion, $representante; 
 
-    public function __construct($username, $password, $rol, $cedula, $nombre, $apellido, $telefono, $direccion, $representante )
+    public function __construct( $cedula, $password, $rol, $nombre, $apellido, $telefono, $direccion, $representante )
     {
-        parent::__construct($username, $password, $rol);     
-        $this->cedula = $cedula; 
+        parent::__construct($cedula, $password, $rol);     
         $this->nombre = $nombre; 
         $this->apellido = $apellido; 
         $this->telefono = $telefono; 

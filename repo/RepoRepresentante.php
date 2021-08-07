@@ -44,7 +44,6 @@ class RepoRepresentante
     public function buscar($cedula)
     { 
         $sql = "SELECT ced_rep as cedula, 
-                username_rep as username, 
                 nom_rep as nombre, 
                 ape_rep as apellido, 
                 tel_rep as telefono, 
@@ -53,7 +52,7 @@ class RepoRepresentante
                 WHERE ced_rep = '".$cedula."';";
         $res = $this->conexion->query($sql);
         $data = $res->fetch_assoc(); 
-        $repre = new Representante($data["username"], "", 2, $data["cedula"], $data["nombre"],
+        $repre = new Representante( $data["cedula"], "", 2, $data["nombre"],
                 $data["apellido"],$data["telefono"],$data["direccion"]);
         return $repre; 
     }

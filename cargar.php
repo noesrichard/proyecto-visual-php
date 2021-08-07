@@ -8,5 +8,8 @@ if(isset($_GET["entidad"]) && $_GET["entidad"] == "profesor"){
 elseif(isset($_GET["entidad"]) && $_GET["entidad"] == "representante"){
     $repres = $controller->listarRepresentantes(); 
     echo json_encode($repres); 
+}elseif(isset($_GET["entidad"]) && $_GET["entidad"] == "alumno"){
+    $alumnos = $controller->listarAlumnos(); 
+    echo json_encode($alumnos); 
 }
 ?>

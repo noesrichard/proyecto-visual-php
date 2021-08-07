@@ -17,5 +17,13 @@ if(isset($_POST) && $_GET["entidad"] == "profesor"){
     }else{ 
         echo "ERROR";
     }
+}elseif(isset($_POST) && $_GET["entidad"] == "alumno"){ 
+    $res =  $controller->actualizarAlumno($_POST["cedula"], $_POST["password"], 2,
+            $_POST["nombre"], $_POST["apellido"], $_POST["telefono"], $_POST["direccion"], $_POST["cedula_rep"]); 
+    if($res){ 
+        echo json_encode("Se guardo correctamente"); 
+    }else{ 
+        echo "ERROR";
+    }
 }
 ?>
