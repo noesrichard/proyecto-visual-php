@@ -31,7 +31,8 @@ class RepoProfesor
         $resultado = $this->conexion->query($sql);
         while($row = $resultado->fetch_assoc())
         { 
-            $profesores[] = new Profesor($row["username"],"", 1, $row["cedula"], $row["nombre"], $row["apellido"], $row["telefono"], $row["direccion"]);
+            //$profesores[] = new Profesor($row["username"],"", 1, $row["cedula"], $row["nombre"], $row["apellido"], $row["telefono"], $row["direccion"]);
+            $profesores[] = $row; 
         }
         return $profesores; 
     }

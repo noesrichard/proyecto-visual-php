@@ -1,19 +1,16 @@
-<?php
-require_once "controllers/AdminController.php";
-$controller = new AdminController();
-$profesores = $controller->listarProfesores();
-?>
+
 <h1>Profesores</h1>
-<table id="dg" title="Profesores" class="easyui-datagrid" style="width:100%;height:500px" url="get_users.php" toolbar="#toolbar" pagination="true" rownumbers="true" fitColumns="true" singleSelect="true">
+<table id="dg" title="Profesores" class="easyui-datagrid" style="width:100%;height:500px" url="cargar.php" toolbar="#toolbar" pagination="true" rownumbers="true" fitColumns="true" singleSelect="true">
     <thead>
         <tr>
-            <th field="firstname" width="20%">Cedula</th>
-            <th field="firstname" width="20%">Nombre</th>
-            <th field="lastname" width="20%">Apellido</th>
-            <th field="phone" width="20%">Telefono</th>
-            <th field="email" width="20%">Direccion</th>
+            <th field="cedula" width="20%">Cedula</th>
+            <th field="nombre" width="20%">Nombre</th>
+            <th field="apellido" width="20%">Apellido</th>
+            <th field="telefono" width="20%">Telefono</th>
+            <th field="direccion" width="20%">Direccion</th>
         </tr>
     </thead>
+    
 </table>
 <div id="toolbar">
     <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUser()">Nuevo Profesor</a>
@@ -25,13 +22,13 @@ $profesores = $controller->listarProfesores();
     <form id="profesores.php" method="post" novalidate style="margin:0;padding:20px 50px">
         <h3>Informacion del profesor</h3>
         <div style="margin-bottom:10px">
-            <input name="username" class="easyui-textbox" required="true" label="Nombre de Usuario" style="width:100%">
+            <input id="input-username" name="username" class="easyui-textbox" required="true" label="Nombre de Usuario" style="width:100%">
         </div>
         <div style="margin-bottom:10px">
-            <input name="password" class="easyui-textbox" required="true" label="Contrase: " style="width:100%">
+            <input id="input-username" name="password" class="easyui-textbox" required="true" label="Contrase: " style="width:100%">
         </div>
         <div style="margin-bottom:10px">
-            <input name="cedula" class="easyui-textbox" required="true" label="Cedula: " style="width:100%">
+            <input id="input-cedula" name="cedula" class="easyui-textbox" required="true" label="Cedula: " style="width:100%">
         </div>
         <div style="margin-bottom:10px">
             <input name="nombre" class="easyui-textbox" required="true" label="Nombre: " style="width:100%">
@@ -45,7 +42,6 @@ $profesores = $controller->listarProfesores();
         <div style="margin-bottom:10px">
             <input name="direccion" class="easyui-textbox" label="Direccion:" style="width:100%">
         </div>
-        <input type="submit" class="easyui-linkbutton c6" iconCls="icon-ok" style="width: 90px" value="Guardar">
     </form>
 </div>
 <div id="dlg-buttons">
@@ -71,8 +67,9 @@ $profesores = $controller->listarProfesores();
     }
 
     function saveUser() {
+        var cedula = document.getElementById("input-cedula").value;
         $('#fm').form('submit', {
-            url: url,
+            url: "profesores.php",
             iframe: false,
             onSubmit: function() {
                 return $(this).form('validate');
@@ -86,7 +83,16 @@ $profesores = $controller->listarProfesores();
                     });
                 } else {
                     $('#dlg').dialog('close'); // close the dialog
-                    $('#dg').datagrid('reload'); // reload the user data
+                    document.getElementById("dg").innerHTML +=
+                        `
+                        <tr>
+                            <td>hola</td>
+                            <td>${cedula}</td>
+                            <td>hola</td>
+                            <td>hola</td>
+                            <td>HOla</td>
+                        </tr>
+                    `
                 }
             }
         });
