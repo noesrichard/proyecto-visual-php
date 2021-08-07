@@ -19,19 +19,40 @@ class RepoProfesor
 
     public function crear($profesor)
     { 
-        $sql = "INSERT INTO profesor values('".$profesor->getCedula()."','".$profesor->getUsername()."','".$profesor->getNombre()."', '".$profesor->getApellido()."','".$profesor->getTelefono()."','".$profesor->getDireccion()."');";
+        $sql = "INSERT INTO profesor values('".$profesor->getUsername()."','".$profesor->getNombre()."', '".$profesor->getApellido()."','".$profesor->getTelefono()."','".$profesor->getDireccion()."');";
         $resultado = $this->conexion->query($sql);
+        return $resultado;
+    }
+
+    
+    public function actualizar($profesor)
+    { 
+        $sql = "UPDATE profesor p, usuario u
+                SET p.nom_pro = '".$profesor->getNombre()."',
+                p.ape_pro = '".$profesor->getApellido()."',
+                p.tel_pro = '".$profesor->getTelefono()."',
+                p.dir_pro = '".$profesor->getDireccion()."',
+                u.password = '".$profesor->getPassword()."'
+                WHERE p.ced_pro = '".$profesor->getUsername()."'
+                and p.ced_pro = u.username";
+        $resultado = $this->conexion->query($sql); 
         return $resultado;
     }
 
     public function getAll()
     { 
         $profesores = array();
-        $sql = "SELECT ced_pro as cedula, username_pro as username, nom_pro as nombre, ape_pro as apellido, tel_pro as telefono, dir_pro as direccion from profesor"; 
+        $sql = "SELECT p.ced_pro as cedula,
+            p.nom_pro as nombre,
+            p.ape_pro as apellido,
+            p.tel_pro as telefono,
+            p.dir_pro as direccion, 
+            u.password as password 
+            from profesor p, usuario u
+            where p.ced_pro = u.username"; 
         $resultado = $this->conexion->query($sql);
         while($row = $resultado->fetch_assoc())
         { 
-            //$profesores[] = new Profesor($row["username"],"", 1, $row["cedula"], $row["nombre"], $row["apellido"], $row["telefono"], $row["direccion"]);
             $profesores[] = $row; 
         }
         return $profesores; 

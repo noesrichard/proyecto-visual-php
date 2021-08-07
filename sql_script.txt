@@ -6,42 +6,39 @@ create table rol(
 );
 
 create table usuario( 
-    username varchar(20) not null primary key, 
+    username varchar(10) not null primary key, 
     password varchar(20) not null, 
     id_rol_usu int not null, 
     foreign key (id_rol_usu) references rol(id_rol)
 );
 
 create table representante( 
-    ced_rep varchar(10) primary key, 
-    username_rep varchar(20) not null, 
+    ced_rep varchar(10) unique, 
     nom_rep varchar(20) not null, 
     ape_rep varchar(20) not null, 
     tel_rep varchar(10), 
     dir_rep tinytext, 
-    foreign key (username_rep) references usuario(username)
+    foreign key (ced_rep) references usuario(username)
 );
 
 create table profesor(
-    ced_pro varchar(10) primary key, 
-    username_pro varchar(20) not null, 
+    ced_pro varchar(10) unique, 
     nom_pro varchar(20) not null, 
     ape_pro varchar(20) not null, 
     tel_pro varchar(10), 
     dir_pro tinytext, 
-    foreign key (username_pro) references usuario(username)
+    foreign key (ced_pro) references usuario(username)
 );
 
 create table alumno( 
-    ced_alu varchar(10) primary key, 
-    username_alu varchar(20) not null, 
+    ced_alu varchar(10) unique, 
     nom_alu varchar(20) not null, 
     ape_alu varchar(20) not null, 
     tel_alu varchar(10), 
     dir_alu tinytext, 
     ced_rep_alu varchar(10) not null, 
     foreign key (ced_rep_alu) references representante(ced_rep),
-    foreign key (username_alu) references usuario(username)
+    foreign key (ced_alu) references usuario(username)
 );
 
 create table materia(

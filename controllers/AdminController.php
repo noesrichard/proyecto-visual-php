@@ -18,18 +18,26 @@ class AdminController
         $this->repoAlumno = new RepoAlumno(); 
     }
 
-    public function crearProfesor($username, $password, $rol, $cedula, $nombre, $apellido, $telefono, $direccion)
+    public function crearProfesor($cedula, $password, $rol, $nombre, $apellido, $telefono, $direccion)
     {
-        if ($this->repoUsuario->existe($username)) {
+        if ($this->repoUsuario->existe($cedula)) {
             echo "Ya existe un usuario con ese nombre";
             return false;
-        } elseif ($this->repoProfesor->existe($cedula)) {
-            echo "Ya existe un profesor con esa cedula";
-            return false;
         }
-        $profesor = new Profesor($username, $password, $rol, $cedula, $nombre, $apellido, $telefono, $direccion);
+        $profesor = new Profesor($cedula, $password, $rol, $nombre, $apellido, $telefono, $direccion);
         if ($this->repoUsuario->crear($profesor)) {
             if ($this->repoProfesor->crear($profesor)) {
+                return $profesor;
+            }
+        }
+        return false;
+    }
+
+    public function actualizarProfesor($cedula, $password, $rol, $nombre, $apellido, $telefono, $direccion)
+    { 
+        if($this->repoProfesor->existe($cedula)){ 
+            $profesor = new Profesor($cedula, $password, $rol, $nombre, $apellido, $telefono, $direccion);
+            if($this->repoProfesor->actualizar($profesor)){ 
                 return $profesor;
             }
         }
