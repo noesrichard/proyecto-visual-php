@@ -25,5 +25,12 @@ if(isset($_POST) && $_GET["entidad"] == "profesor"){
     }else{ 
         echo "ERROR";
     }
+}elseif(isset($_POST) && $_GET["entidad"] == "materia"){ 
+    $res =  $controller->actualizarMateria($_POST["id"], $_POST["nombre"], $_POST["descripcion"], $_POST["cedula_profesor"]); 
+    if($res){ 
+        echo json_encode("Se guardo correctamente"); 
+    }else{ 
+        echo "ERROR";
+    }
 }
 ?>

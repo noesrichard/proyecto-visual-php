@@ -11,5 +11,8 @@ elseif(isset($_GET["entidad"]) && $_GET["entidad"] == "representante"){
 }elseif(isset($_GET["entidad"]) && $_GET["entidad"] == "alumno"){
     $alumnos = $controller->listarAlumnos(); 
     echo json_encode($alumnos); 
+}elseif(isset($_GET["entidad"]) && $_GET["entidad"] == "materia"){
+    $materias = $controller->listarMaterias(); 
+    echo json_encode($materias); 
 }
 ?>

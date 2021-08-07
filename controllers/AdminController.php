@@ -3,19 +3,22 @@ require_once "repo/RepoProfesor.php";
 require_once "repo/RepoUsuario.php";
 require_once "repo/RepoRepresentante.php";
 require_once "repo/RepoAlumno.php";
+require_once "repo/RepoMateria.php";
+require_once "models/Materia.php";
 require_once "models/Profesor.php";
 require_once "models/Usuario.php";
 require_once "models/Alumno.php";
 require_once "models/Representante.php";
 class AdminController
 {
-    private $repoProfesor, $repoUsuario, $repoAlumno, $repoRepresentante;
+    private $repoProfesor, $repoUsuario, $repoAlumno, $repoRepresentante, $repoMateria;
     public function __construct()
     {
         $this->repoUsuario = new RepoUsuario();
         $this->repoProfesor = new RepoProfesor();
         $this->repoRepresentante = new RepoRepresentante();
         $this->repoAlumno = new RepoAlumno(); 
+        $this->repoMateria = new RepoMateria;
     }
 
     public function crearProfesor($cedula, $password, $rol, $nombre, $apellido, $telefono, $direccion)
@@ -104,6 +107,33 @@ class AdminController
         return false;
     }
 
+    public function crearMateria($id, $nombre, $descripcion, $cedula_profesor)
+    { 
+        if($this->repoMateria->existe($id)){ 
+            return false;
+        }
+        $profesor = $this->repoProfesor->buscar($cedula_profesor); 
+        $materia = new Materia($id, $nombre, $descripcion, $profesor);
+        $res = $this->repoMateria->crear($materia); 
+        if($res)
+        { 
+            return $materia; 
+        }
+        return false; 
+    }
+
+    public function actualizarMateria($id, $nombre, $descripcion, $cedula_profesor)
+    { 
+        if($this->repoMateria->existe($id)){ 
+            $profe = $this->repoProfesor->buscar($cedula_profesor);
+            $materia = new Materia($id, $nombre, $descripcion, $profe); 
+            if($this->repoMateria->actualizar($materia)){ 
+                return $materia;
+            }
+        }
+        return false;
+    }
+
     public function listarProfesores()
     {
         return $this->repoProfesor->getAll();
@@ -117,6 +147,11 @@ class AdminController
     public function listarRepresentantes()
     { 
         return $this->repoRepresentante->getAll(); 
+    }
+
+    public function listarMaterias()
+    { 
+        return $this->repoMateria->getAll(); 
     }
 }
 ?>

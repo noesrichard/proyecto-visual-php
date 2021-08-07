@@ -10,7 +10,7 @@
                 echo "<li><a href='index.php?action=notas'>Editar Notas</a></li>";
             }elseif($rol == ADMIN){ 
                 echo "<li><a href='index.php?action=profesores'>Profesores</a></li>";
-                echo "<li><a href='index.php?action=notas'>Materias</a></li>";
+                echo "<li><a href='index.php?action=materias'>Materias</a></li>";
                 echo "<li><a href='index.php?action=alumnos'>Alumnos</a></li>";
                 echo "<li><a href='index.php?action=representantes'>Representantes</a></li>";
             }else{ 

@@ -10,6 +10,22 @@ class RepoProfesor
 
     }
 
+    public function buscar($cedula)
+    { 
+        $sql = "SELECT p.ced_pro as cedula,
+            p.nom_pro as nombre,
+            p.ape_pro as apellido,
+            p.tel_pro as telefono,
+            p.dir_pro as direccion, 
+            u.password as password 
+            from profesor p, usuario u
+            where p.ced_pro = u.username
+            and p.ced_pro = '".$cedula."';";
+        $res = $this->conexion->query($sql); 
+        $data = $res->fetch_assoc(); 
+        return new Profesor($data["cedula"],$data["password"],1, $data["nombre"], $data["apellido"], $data["telefono"], $data["direccion"]);
+    }
+
     public function existe($cedula){ 
         $sql = "SELECT EXISTS(SELECT ced_pro FROM profesor WHERE ced_pro='".$cedula."') as existe;";
         $resultado = $this->conexion->query($sql);
