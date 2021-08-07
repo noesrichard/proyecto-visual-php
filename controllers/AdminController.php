@@ -44,18 +44,29 @@ class AdminController
         return false;
     }
 
-    public function crearRepresentante($username, $password, $rol, $cedula, $nombre, $apellido, $telefono, $direccion)
+    public function crearRepresentante($cedula, $password, $rol, $nombre, $apellido, $telefono, $direccion)
     {
-        if ($this->repoUsuario->existe($username)) {
+        if ($this->repoUsuario->existe($cedula)) {
             echo "Ya existe un usuario con ese nombre";
             return false;
         } elseif ($this->repoRepresentante->existe($cedula)) {
             echo "Ya existe un profesor con esa cedula";
             return false;
         }
-        $repre = new Representante($username, $password, $rol, $cedula, $nombre, $apellido, $telefono, $direccion);
+        $repre = new Representante($cedula, $password, $rol, $nombre, $apellido, $telefono, $direccion);
         if ($this->repoUsuario->crear($repre)) {
             if ($this->repoRepresentante->crear($repre)) {
+                return $repre;
+            }
+        }
+        return false;
+    }
+
+    public function actualizarRepresentante($cedula, $password, $rol, $nombre, $apellido, $telefono, $direccion)
+    { 
+        if($this->repoRepresentante->existe($cedula)){ 
+            $repre = new Representante($cedula, $password, $rol, $nombre, $apellido, $telefono, $direccion);
+            if($this->repoRepresentante->actualizar($repre)){ 
                 return $repre;
             }
         }
@@ -89,6 +100,11 @@ class AdminController
     public function listarAlumnos()
     {
         return $this->repoAlumno->getAll();
+    }
+
+    public function listarRepresentantes()
+    { 
+        return $this->repoRepresentante->getAll(); 
     }
 }
 ?>

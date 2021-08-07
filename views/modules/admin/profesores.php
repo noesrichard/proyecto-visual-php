@@ -1,6 +1,6 @@
 <h2>Profesores</h2>
 
-<table id="dg" title="Profesores" class="easyui-datagrid" style="width:100%;height:500px" url="cargar.php?GET=profesores" toolbar="#toolbar" pagination="true" rownumbers="true" fitColumns="true" singleSelect="true">
+<table id="dg" title="Profesores" class="easyui-datagrid" style="width:100%;height:500px" url="cargar.php?entidad=profesor" toolbar="#toolbar" pagination="true" rownumbers="true" fitColumns="true" singleSelect="true">
     <thead>
         <tr>
             <th field="cedula" width="50">Cedula</th>
@@ -52,7 +52,7 @@
     function newUser() {
         $('#dlg').dialog('open').dialog('center').dialog('setTitle', 'Nuevo Profesor');
         $('#fm').form('clear');
-        url = 'crear.php?POST=profesores';
+        url = 'crear.php?entidad=profesor';
     }
 
     function editUser() {
@@ -60,7 +60,7 @@
         if (row) {
             $('#dlg').dialog('open').dialog('center').dialog('setTitle', 'Editar Profesor');
             $('#fm').form('load', row);
-            url = 'actualizar.php?PUT=profesor';
+            url = 'actualizar.php?entidad=profesor';
         }
     }
 

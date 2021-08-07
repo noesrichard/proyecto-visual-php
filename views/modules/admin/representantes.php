@@ -3,14 +3,15 @@ require_once "controllers/AdminController.php";
 $controller = new AdminController();
 ?>
 <h1>Representantes</h1>
-<table id="dg" title="Representantes" class="easyui-datagrid" style="width:100%;height:500px" url="get_users.php" toolbar="#toolbar" pagination="true" rownumbers="true" fitColumns="true" singleSelect="true">
+<table id="dg" title="Representantes" class="easyui-datagrid" style="width:100%;height:500px" url="cargar.php?entidad=representante" toolbar="#toolbar" pagination="true" rownumbers="true" fitColumns="true" singleSelect="true">
     <thead>
         <tr>
-            <th field="firstname" width="20%">Cedula</th>
-            <th field="firstname" width="20%">Nombre</th>
-            <th field="lastname" width="20%">Apellido</th>
-            <th field="phone" width="20%">Telefono</th>
-            <th field="email" width="20%">Direccion</th>
+            <th field="cedula" width="20%">Cedula</th>
+            <th field="password" width="20%">Contraseña</th>
+            <th field="nombre" width="20%">Nombre</th>
+            <th field="apellido" width="20%">Apellido</th>
+            <th field="telefono" width="20%">Telefono</th>
+            <th field="direccion" width="20%">Direccion</th>
         </tr>
     </thead>
 </table>
@@ -21,16 +22,13 @@ $controller = new AdminController();
 </div>
 
 <div id="dlg" class="easyui-dialog" style="width:400px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlg-buttons'">
-    <form id="representantes.php" method="post" novalidate style="margin:0;padding:20px 50px">
+    <form id="fm" method="post" novalidate style="margin:0;padding:20px 50px">
         <h3>Informacion del representante</h3>
         <div style="margin-bottom:10px">
-            <input name="username" class="easyui-textbox" required="true" label="Nombre de Usuario" style="width:100%">
+            <input name="cedula" class="easyui-textbox" required="true" label="Nombre de Usuario" style="width:100%">
         </div>
         <div style="margin-bottom:10px">
             <input name="password" class="easyui-textbox" required="true" label="Contrase: " style="width:100%">
-        </div>
-        <div style="margin-bottom:10px">
-            <input name="cedula" class="easyui-textbox" required="true" label="Cedula: " style="width:100%">
         </div>
         <div style="margin-bottom:10px">
             <input name="nombre" class="easyui-textbox" required="true" label="Nombre: " style="width:100%">
@@ -44,12 +42,11 @@ $controller = new AdminController();
         <div style="margin-bottom:10px">
             <input name="direccion" class="easyui-textbox" label="Direccion:" style="width:100%">
         </div>
-        <input type="submit" class="easyui-linkbutton c6" iconCls="icon-ok" style="width: 90px" value="Guardar">
     </form>
 </div>
 <div id="dlg-buttons">
-    <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveUser()" style="width:90px">Save</a>
-    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')" style="width:90px">Cancel</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveUser()" style="width:90px">Guardar</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')" style="width:90px">Cancelar</a>
 </div>
 <script type="text/javascript">
     var url;
@@ -57,7 +54,7 @@ $controller = new AdminController();
     function newUser() {
         $('#dlg').dialog('open').dialog('center').dialog('setTitle', 'New User');
         $('#fm').form('clear');
-        url = 'save_user.php';
+        url = 'crear.php?entidad=representante';
     }
 
     function editUser() {
@@ -65,7 +62,7 @@ $controller = new AdminController();
         if (row) {
             $('#dlg').dialog('open').dialog('center').dialog('setTitle', 'Edit User');
             $('#fm').form('load', row);
-            url = 'update_user.php?id=' + row.id;
+            url = 'actualizar.php?entidad=representante';
         }
     }
 
@@ -113,8 +110,3 @@ $controller = new AdminController();
         }
     }
 </script>
-<?php
-if ($_POST && isset($_POST["username"])) {
-    $controller->crearRepresentante($_POST["username"], $_POST["password"], 2, $_POST["cedula"], $_POST["nombre"], $_POST["apellido"], $_POST["telefono"], $_POST["direccion"]);
-}
-?>

@@ -3,21 +3,17 @@
 require_once "Usuario.php"; 
 class Representante extends Usuario
 { 
-    private $cedula, $nombre, $apellido, $telefono, $direccion; 
+    private  $nombre, $apellido, $telefono, $direccion; 
 
-    public function __construct($username, $password, $rol, $cedula, $nombre, $apellido, $telefono, $direccion)
+    public function __construct($cedula, $password, $rol, $nombre, $apellido, $telefono, $direccion)
     {
-        parent::__construct($username, $password,$rol); 
-        $this->cedula = $cedula; 
+        parent::__construct($cedula, $password,$rol); 
         $this->nombre = $nombre; 
         $this->apellido = $apellido; 
         $this->telefono = $telefono; 
         $this->direccion = $direccion; 
     }
-    public function getCedula()
-    { 
-        return $this->cedula; 
-    }
+    
     public function getNombre()
     { 
         return $this->nombre; 
