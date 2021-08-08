@@ -3,7 +3,7 @@
 <table id="dg" title="Materias" class="easyui-datagrid" style="width:100%;height:500px" url="cargar.php?entidad=materia" toolbar="#toolbar" pagination="true" rownumbers="true" fitColumns="true" singleSelect="true">
     <thead>
         <tr>
-            <th field="id" width="50">Cedula</th>
+            <th field="id" width="50">ID</th>
             <th field="nombre" width="50">Nombre</th>
             <th field="descripcion" width="50">Descripcion</th>
             <th field="cedula_profesor" width="50">Profesor</th>

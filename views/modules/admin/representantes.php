@@ -6,12 +6,12 @@ $controller = new AdminController();
 <table id="dg" title="Representantes" class="easyui-datagrid" style="width:100%;height:500px" url="cargar.php?entidad=representante" toolbar="#toolbar" pagination="true" rownumbers="true" fitColumns="true" singleSelect="true">
     <thead>
         <tr>
-            <th field="cedula" width="20%">Cedula</th>
-            <th field="password" width="20%">Contraseña</th>
-            <th field="nombre" width="20%">Nombre</th>
-            <th field="apellido" width="20%">Apellido</th>
-            <th field="telefono" width="20%">Telefono</th>
-            <th field="direccion" width="20%">Direccion</th>
+            <th field="cedula" width="15%">Cedula</th>
+            <th field="password" width="15%">Contraseña</th>
+            <th field="nombre" width="15%">Nombre</th>
+            <th field="apellido" width="15%">Apellido</th>
+            <th field="telefono" width="15%">Telefono</th>
+            <th field="direccion" width="15%">Direccion</th>
         </tr>
     </thead>
 </table>
@@ -25,7 +25,7 @@ $controller = new AdminController();
     <form id="fm" method="post" novalidate style="margin:0;padding:20px 50px">
         <h3>Informacion del representante</h3>
         <div style="margin-bottom:10px">
-            <input name="cedula" class="easyui-textbox" required="true" label="Nombre de Usuario" style="width:100%">
+            <input name="cedula" class="easyui-textbox" required="true" label="Cedula: " style="width:100%">
         </div>
         <div style="margin-bottom:10px">
             <input name="password" class="easyui-textbox" required="true" label="Contrase: " style="width:100%">

@@ -8,6 +8,15 @@ class RepoNotas
     {
        $this->conexion = new Conexion();  
     }
+    
+    public function existe($nota)
+    { 
+        $materia = $nota->getMateria(); 
+        $alumno = $nota->getAlumno(); 
+        $sql = "SELECT EXISTS(SELECT uno_not FROM notas WHERE id_mat_not='".$materia->getId()."' and ced_alu_not='".$alumno->getUsername()."') as existe;";
+        $data = $this->conexion->query($sql)->fetch_assoc(); 
+        return $data["existe"]; 
+    }
 
     public function getNotasPorMateria($materia)
     { 
@@ -20,6 +29,45 @@ class RepoNotas
                 FROM notas n, alumno a
                 WHERE a.ced_alu = n.ced_alu_not
                 AND n.id_mat_not = '".$materia->getId()."';";
+        $res = $this->conexion->query($sql); 
+        while($row = $res->fetch_assoc())
+        { 
+            $notas[] = $row; 
+        }
+        return $notas;
+    }
+
+    public function crear($nota)
+    { 
+        $materia = $nota->getMateria(); 
+        $alumno = $nota->getAlumno(); 
+        $sql = "INSERT INTO notas values('".$materia->getId()."','".$nota->getUno()."','".$nota->getDos()."','".$alumno->getUsername()."');";
+        $res = $this->conexion->query($sql); 
+        return $res; 
+    }
+
+    public function actualizar($nota)
+    { 
+        $materia = $nota->getMateria(); 
+        $alumno = $nota->getAlumno(); 
+        $sql = "UPDATE notas
+                SET uno_not = '".$nota->getUno()."', 
+                dos_not = '".$nota->getDos()."' 
+                WHERE ced_alu_not = '".$alumno->getUsername()."'
+                AND id_mat_not = '".$materia->getID()."';";
+        $res = $this->conexion->query($sql); 
+        return $res;
+    }
+
+    public function getNotasAlumno($alumno)
+    { 
+        $notas = array();
+        $sql = "SELECT m.nom_mat as materia, 
+                n.uno_not as nota_uno, 
+                n.dos_not as nota_dos 
+                from notas n, materia m 
+                where n.id_mat_not = m.id_mat
+                and n.ced_alu_not = '".$alumno->getUsername()."';";
         $res = $this->conexion->query($sql); 
         while($row = $res->fetch_assoc())
         { 

@@ -15,15 +15,8 @@
     </ul>
     <!-- onclick="cargarTablaMateria('.$materia['id'].')-->
 </aside>
-<script>
-    function cargarTablaMateria(idMateria){ 
-        $('#dg').datagrid({ 
-            url: "cargar.php?materia="+idMateria
-        });    
-    }
-</script>
 <section>
-    <table id="dg" title="My Users" class="easyui-datagrid" style="width:78%;height:500px"
+    <table id="dg" title="Alumnos" class="easyui-datagrid" style="width:78%;height:500px"
             toolbar="#toolbar" pagination="true"
             rownumbers="true" fitColumns="true" singleSelect="true">
         <thead>
@@ -37,14 +30,14 @@
         </thead>
     </table>
     <div id="toolbar">
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUser()">New User</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">Edit User</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyUser()">Remove User</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUser()">Nueva Nota</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">Editar Nota</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyUser()">Eliminar Nota</a>
     </div>
     
     <div id="dlg" class="easyui-dialog" style="width:400px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlg-buttons'">
         <form id="fm" method="post" novalidate style="margin:0;padding:20px 50px">
-            <h3>User Information</h3>
+            <h3>Informacion de las notas</h3>
             <div style="margin-bottom:10px">
                 <input name="cedula_alumno" class="easyui-textbox" required="true" label="Cedula: " style="width:100%">
             </div>
@@ -63,17 +56,24 @@
     </div>
     <script type="text/javascript">
         var url;
+        var ID = ""; 
+        function cargarTablaMateria(idMateria){ 
+            ID = idMateria;
+            $('#dg').datagrid({ 
+                url: "cargar.php?materia="+idMateria
+            });    
+        }
         function newUser(){
-            $('#dlg').dialog('open').dialog('center').dialog('setTitle','New User');
+            $('#dlg').dialog('open').dialog('center').dialog('setTitle','Nueva Nota');
             $('#fm').form('clear');
-            url = 'save_user.php';
+            url = 'crear.php?entidad=nota&materia='+ID;
         }
         function editUser(){
             var row = $('#dg').datagrid('getSelected');
             if (row){
-                $('#dlg').dialog('open').dialog('center').dialog('setTitle','Edit User');
+                $('#dlg').dialog('open').dialog('center').dialog('setTitle','Editar Nota');
                 $('#fm').form('load',row);
-                url = 'update_user.php?id='+row.id;
+                url = 'actualizar.php?entidad=nota&materia='+ID;
             }
         }
         function saveUser(){

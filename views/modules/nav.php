@@ -13,8 +13,10 @@
                 echo "<li><a href='index.php?action=materias'>Materias</a></li>";
                 echo "<li><a href='index.php?action=alumnos'>Alumnos</a></li>";
                 echo "<li><a href='index.php?action=representantes'>Representantes</a></li>";
-            }else{ 
+            }elseif($rol == ALUMNO){ 
                 echo "<li><a href='index.php?action=notas'>Ver Notas</a></li>";
+            }else{ 
+                echo "<li><a href='index.php?action=notas_repre'>Ver Notas</a></li>";
             }
 
         ?>

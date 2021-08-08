@@ -12,6 +12,30 @@ class RepoAlumno
        $this->conexion = new Conexion();  
     }
 
+    public function buscar($cedula)
+    { 
+        $sql = "SELECT a.ced_alu as cedula, 
+                    u.password as password,
+                    a.nom_alu as nombre, 
+                    a.ape_alu as apellido,
+                    a.tel_alu as telefono, 
+                    a.dir_alu as direccion, 
+                    r.ced_rep as cedula_rep, 
+                    r.nom_rep as nombre_rep, 
+                    r.ape_rep as apellido_rep, 
+                    r.tel_rep as telefono_rep,
+                    r.dir_rep as direccion_rep 
+                    from alumno a, representante r, usuario u
+                    where a.ced_rep_alu = r.ced_rep
+                    and a.ced_alu = u.username
+                    and a.ced_alu = '".$cedula."'; ";
+        $res = $this->conexion->query($sql); 
+        $data = $res->fetch_assoc(); 
+        $repre = new Representante( $data["cedula"], "", 2, $data["nombre"],
+                $data["apellido"],$data["telefono"],$data["direccion"]);
+        return new Alumno($data["cedula"], $data["password"], 2, $data["nombre"], $data["apellido"], $data["telefono"], $data["direccion"], $repre); 
+    }
+
     public function existe($cedula)
     { 
         $sql = "SELECT EXISTS(SELECT ced_alu FROM alumno WHERE ced_alu='".$cedula."') as existe;";
@@ -69,6 +93,24 @@ class RepoAlumno
             $alumnos[] = $row; 
         }
         return $alumnos; 
+    }
+
+    public function buscarPorRepresentante($repre)
+    { 
+        $sql = "SELECT a.ced_alu as cedula, 
+                    u.password as password,
+                    a.nom_alu as nombre, 
+                    a.ape_alu as apellido,
+                    a.tel_alu as telefono, 
+                    a.dir_alu as direccion 
+                    from alumno a, representante r, usuario u
+                    where a.ced_rep_alu = r.ced_rep
+                    and a.ced_alu = u.username
+                    and r.ced_rep = '".$repre->getUsername()."';";
+        $res = $this->conexion->query($sql); 
+        $data = $res->fetch_assoc(); 
+        return new Alumno($data["cedula"], $data["password"], 2, $data["nombre"], $data["apellido"], $data["telefono"], $data["direccion"], $repre); 
+       
     }
 }
 
