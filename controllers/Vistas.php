@@ -11,6 +11,9 @@ class Vistas
         }elseif($direccion == "profesores" || $direccion == "representantes" || $direccion == "alumnos" || $direccion == "materias")
         { 
             $modulo = "views/modules/admin/".$direccion.".php";
+        }elseif($direccion == "editar_notas")
+        { 
+            $modulo = "views/modules/profesor/".$direccion.".php";
         }
 
         return $modulo; 

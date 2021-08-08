@@ -7,7 +7,7 @@
             $rol = $_SESSION["rol"];
             if($rol == PROFESOR)
             { 
-                echo "<li><a href='index.php?action=notas'>Editar Notas</a></li>";
+                echo "<li><a href='index.php?action=editar_notas'>Editar Notas</a></li>";
             }elseif($rol == ADMIN){ 
                 echo "<li><a href='index.php?action=profesores'>Profesores</a></li>";
                 echo "<li><a href='index.php?action=materias'>Materias</a></li>";

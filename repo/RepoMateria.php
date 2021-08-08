@@ -22,7 +22,7 @@ class RepoMateria{
         $sql = "SELECT id_mat as id, 
                 nom_mat as nombre, 
                 des_mat as descripcion,
-                ced_pro_mat as cedula_profesor,
+                ced_pro_mat as cedula_profesor
                 FROM materia
                 WHERE id_mat = '".$id."';";
         $res = $this->conexion->query($sql); 
@@ -68,6 +68,22 @@ class RepoMateria{
             return $materia; 
         }
         return false; 
+    }
+
+    public function getMateriasPorProfesor($cedula)
+    { 
+        $materias = array();
+        $sql = "SELECT id_mat as id,
+                nom_mat as nombre, 
+                des_mat as descripcion
+                from materia
+                where ced_pro_mat = '".$cedula."';";
+        $res = $this->conexion->query($sql); 
+        while($row = $res->fetch_assoc())
+        { 
+            $materias[] = $row;
+        }
+        return $materias;
     }
 
 }

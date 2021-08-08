@@ -1,0 +1,20 @@
+.notas{
+    font-size: large;
+    background-color: gray;
+    float:  left;
+    margin-right: 5px;
+    width: 20%;
+}
+
+ul li{ 
+    list-style: none;
+}
+
+.nombre-materia{ 
+    text-decoration: none;
+}
+
+.nombre-materia:hover{ 
+    color: white;
+    cursor: pointer;
+}
