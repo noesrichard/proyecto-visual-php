@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-08-2021 a las 02:04:23
+-- Tiempo de generación: 09-08-2021 a las 02:28:56
 -- Versión del servidor: 10.4.18-MariaDB
 -- Versión de PHP: 8.0.5
 
@@ -106,6 +106,16 @@ CREATE TABLE `rol` (
   `nom_rol` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `des_rol` tinytext COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `rol`
+--
+
+INSERT INTO `rol` (`id_rol`, `nom_rol`, `des_rol`) VALUES
+(0, 'admin', 'permisos de crear eliminar y actualizar todo '),
+(1, 'profesor', 'permisos de crear notas'),
+(2, 'alumno', 'solo ver'),
+(3, 'representante', 'ver notas del representado');
 
 -- --------------------------------------------------------
 
