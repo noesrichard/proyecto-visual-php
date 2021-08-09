@@ -67,13 +67,24 @@ class RepoRepresentante
                 r.dir_rep as direccion,
                 u.password as password
                 FROM representante r, usuario u
-                WHERE r.ced_rep = u.username";
+                WHERE r.ced_rep = u.username
+                and r.visible = 1";
         $res = $this->conexion->query($sql); 
         while($row = $res->fetch_assoc())
         { 
             $repres[] = $row; 
         }
         return $repres; 
+    }
+
+    public function eliminar($repre)
+    { 
+        $sql = "UPDATE representante r, usuario u
+                SET r.visible = 0, 
+                u.visible = 0
+                WHERE r.ced_rep = '".$repre->getUsername()."'
+                AND u.username = r.ced_rep;";
+        $this->conexion->query($sql);
     }
 }
 ?>

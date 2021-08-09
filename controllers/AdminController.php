@@ -76,6 +76,24 @@ class AdminController
         return false;
     }
 
+    public function eliminarRepresentante($cedula)
+    { 
+        $repre = $this->repoRepresentante->buscar($cedula); 
+        $this->repoRepresentante->eliminar($repre); 
+    }
+
+    public function eliminarAlumno($cedula)
+    { 
+        $alumno = $this->repoAlumno->buscar($cedula); 
+        $this->repoAlumno->eliminar($alumno); 
+    }
+
+    public function eliminarProfesor($cedula)
+    { 
+        $profesor = $this->repoProfesor->buscar($cedula); 
+        $this->repoProfesor->eliminar($profesor); 
+    }
+
     public function crearAlumno($cedula, $password, $rol, $nombre, $apellido, $telefono, $direccion, $cedula_repre)
     {
         if ($this->repoUsuario->existe($cedula)) {

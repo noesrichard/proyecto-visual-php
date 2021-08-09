@@ -87,6 +87,7 @@ class RepoAlumno
                     r.dir_rep as direccion_rep 
                     from alumno a, representante r, usuario u
                     where a.ced_rep_alu = r.ced_rep
+                    and a.visible = 1
                     and a.ced_alu = u.username; ";
         $resultado = $this->conexion->query($sql); 
         while($row = $resultado->fetch_assoc()) { 
@@ -111,6 +112,16 @@ class RepoAlumno
         $data = $res->fetch_assoc(); 
         return new Alumno($data["cedula"], $data["password"], 2, $data["nombre"], $data["apellido"], $data["telefono"], $data["direccion"], $repre); 
        
+    }
+
+    public function eliminar($alumno)
+    {
+        $sql = "UPDATE alumno a, usuario u
+                SET a.visible = 0, 
+                u.visible = 0
+                WHERE a.ced_alu = '".$alumno->getUsername()."'
+                AND a.ced_alu = u.username;";
+        $this->conexion->query($sql); 
     }
 }
 

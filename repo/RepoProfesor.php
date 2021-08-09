@@ -65,13 +65,24 @@ class RepoProfesor
             p.dir_pro as direccion, 
             u.password as password 
             from profesor p, usuario u
-            where p.ced_pro = u.username"; 
+            where p.ced_pro = u.username
+            and p.visible = 1"; 
         $resultado = $this->conexion->query($sql);
         while($row = $resultado->fetch_assoc())
         { 
             $profesores[] = $row; 
         }
         return $profesores; 
+    }
+
+    public function eliminar($profesor)
+    {
+        $sql = "UPDATE profesor p, usuario u
+                SET p.visible = 0,
+                u.visible = 0
+                WHERE p.ced_pro = '".$profesor->getUsername()."'
+                AND u.username = p.ced_pro;";
+        $this->conexion->query($sql); 
     }
 }
 ?>

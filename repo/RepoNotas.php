@@ -28,7 +28,8 @@ class RepoNotas
                 a.ape_alu as apellido_alumno
                 FROM notas n, alumno a
                 WHERE a.ced_alu = n.ced_alu_not
-                AND n.id_mat_not = '".$materia->getId()."';";
+                AND n.id_mat_not = '".$materia->getId()."'
+                and n.visible = 1;";
         $res = $this->conexion->query($sql); 
         while($row = $res->fetch_assoc())
         { 
@@ -67,7 +68,8 @@ class RepoNotas
                 n.dos_not as nota_dos 
                 from notas n, materia m 
                 where n.id_mat_not = m.id_mat
-                and n.ced_alu_not = '".$alumno->getUsername()."';";
+                and n.ced_alu_not = '".$alumno->getUsername()."'
+                and n.visible = 1;";
         $res = $this->conexion->query($sql); 
         while($row = $res->fetch_assoc())
         { 
@@ -75,6 +77,18 @@ class RepoNotas
         }
         return $notas;
     }
+
+    public function eliminar($materia, $alumno)
+    {
+        $sql = "UPDATE notas
+                SET visible = 0
+                WHERE id_mat_not = '".$materia->getId()."'
+                AND ced_alu_not = '".$alumno->getUsername()."';";
+        $this->conexion->query($sql); 
+    }
+
+
+
 
 }
 
