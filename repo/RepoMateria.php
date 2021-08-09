@@ -63,7 +63,7 @@ class RepoMateria{
     { 
         $profesor = $materia->getProfesor(); 
         $sql = "INSERT INTO materia VALUES('".$materia->getId()."','".$materia->getNombre()."','".$materia->getDescripcion()."',
-                '".$profesor->getUsername()."');";
+                '".$profesor->getUsername()."', 1);";
         if($this->conexion->query($sql))
         { 
             return $materia; 

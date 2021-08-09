@@ -42,7 +42,7 @@ class RepoNotas
     { 
         $materia = $nota->getMateria(); 
         $alumno = $nota->getAlumno(); 
-        $sql = "INSERT INTO notas values('".$materia->getId()."','".$nota->getUno()."','".$nota->getDos()."','".$alumno->getUsername()."');";
+        $sql = "INSERT INTO notas values('".$materia->getId()."','".$nota->getUno()."','".$nota->getDos()."','".$alumno->getUsername()."', 1);";
         $res = $this->conexion->query($sql); 
         return $res; 
     }

@@ -48,7 +48,7 @@ class RepoAlumno
     { 
         $cedulaRepre = $alumno->getRepresentante()->getUsername(); 
         $sql = "INSERT INTO alumno values('".$alumno->getUsername()."', '".$alumno->getNombre()."', 
-            '".$alumno->getApellido()."','".$alumno->getTelefono()."','".$alumno->getDireccion()."', '".$cedulaRepre."');";
+            '".$alumno->getApellido()."','".$alumno->getTelefono()."','".$alumno->getDireccion()."', '".$cedulaRepre."', 1);";
         $resultado = $this->conexion->query($sql);
         return $resultado;
     }

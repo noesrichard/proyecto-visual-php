@@ -36,7 +36,7 @@ class RepoRepresentante
         $sql = "INSERT INTO representante 
                 values('".$repre->getUsername()."','".$repre->getNombre()."', 
                 '".$repre->getApellido()."','".$repre->getTelefono()."',
-                '".$repre->getDireccion()."');";
+                '".$repre->getDireccion()."', 1);";
         $resultado = $this->conexion->query($sql);
         return $resultado;
     }

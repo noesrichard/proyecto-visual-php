@@ -35,7 +35,7 @@ class RepoProfesor
 
     public function crear($profesor)
     { 
-        $sql = "INSERT INTO profesor values('".$profesor->getUsername()."','".$profesor->getNombre()."', '".$profesor->getApellido()."','".$profesor->getTelefono()."','".$profesor->getDireccion()."');";
+        $sql = "INSERT INTO profesor values('".$profesor->getUsername()."','".$profesor->getNombre()."', '".$profesor->getApellido()."','".$profesor->getTelefono()."','".$profesor->getDireccion()."', 1);";
         $resultado = $this->conexion->query($sql);
         return $resultado;
     }

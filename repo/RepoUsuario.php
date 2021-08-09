@@ -30,7 +30,7 @@ class RepoUsuario
 
     public function crear($usuario)
     { 
-        $sql = "INSERT INTO usuario values('".$usuario->getUsername()."','".$usuario->getPassword()."','".$usuario->getRol()."'); ";
+        $sql = "INSERT INTO usuario values('".$usuario->getUsername()."','".$usuario->getPassword()."','".$usuario->getRol()."', 1); ";
         $resultado = $this->conexion->query($sql); 
         return $resultado; 
     }
