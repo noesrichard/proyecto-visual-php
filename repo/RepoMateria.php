@@ -50,7 +50,8 @@ class RepoMateria{
                 nom_mat as nombre, 
                 des_mat as descripcion,
                 ced_pro_mat as cedula_profesor
-                FROM materia;";
+                FROM materia
+                where visible = 1;";
         $res = $this->conexion->query($sql); 
         while($row = $res->fetch_assoc()){ 
             $materias[] = $row; 
@@ -77,13 +78,22 @@ class RepoMateria{
                 nom_mat as nombre, 
                 des_mat as descripcion
                 from materia
-                where ced_pro_mat = '".$cedula."';";
+                where ced_pro_mat = '".$cedula."'
+                and visible = 1;";
         $res = $this->conexion->query($sql); 
         while($row = $res->fetch_assoc())
         { 
             $materias[] = $row;
         }
         return $materias;
+    }
+
+    public function eliminar($materia)
+    {
+        $sql = "UPDATE materia
+                SET visible = 0
+                WHERE id_mat = '".$materia->getId()."';";
+        $this->conexion->query($sql); 
     }
 
 }

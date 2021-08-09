@@ -22,7 +22,7 @@ class RepoUsuario
     }
     public function buscar($username, $password)
     { 
-        $sql = "SELECT username, `password`, id_rol_usu as rol FROM usuario WHERE username='".$username."' and password='".$password."';";
+        $sql = "SELECT username, `password`, id_rol_usu as rol FROM usuario WHERE username='".$username."' and password='".$password."' and visible = 1;";
         $resultado = $this->conexion->query($sql);
         $data = $resultado->fetch_assoc(); 
         return new Usuario($data["username"], $data["password"], $data["rol"]);
